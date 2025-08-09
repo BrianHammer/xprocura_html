@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en" class="group/html">
+  <head>
+    <title>XProcura - App</title>
+
+    <meta charset="UTF-8" />
+    <meta name="author" content="Brianavadiya" />
+    <meta
+      name="keywords"
+      content="HTML, CSS, daisyui, tailwindcss, admin, client, dashboard, ui kit, component"
+    />
+    <meta
+      name="description"
+      content="Start your next project with Nexus, designed for effortless customization to streamline your development process"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./images/favicon-dark.png"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link
+      rel="shortcut icon"
+      href="./images/favicon-light.png"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <script>
+      try {
+        const localStorageItem = localStorage.getItem('__NEXUS_CONFIG_v2.0__')
+        if (localStorageItem) {
+          const theme = JSON.parse(localStorageItem).theme
+          if (theme !== 'system') {
+            document.documentElement.setAttribute('data-theme', theme)
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    </script>
+
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+
+  <body>
+    <!--  Start: Layout - Main -->
+
+    <div class="size-full">
+      <div class="flex">
+        <!--  Start: Layout - Sidebar -->
+        <load-component
+          src="components//sidebar.html"
+          style="min-height: 100vh"
+        ></load-component>
+        <!--  End: Layout - Sidebar -->
+
+        <div class="flex h-screen min-w-0 grow flex-col overflow-auto">
+          <!--  Start: Layout - Topbar -->
+
+          <div
+            role="navigation"
+            aria-label="Navbar"
+            class="flex items-center justify-between px-3"
+            id="layout-topbar"
+          >
+            <div class="inline-flex items-center gap-3">
+              <label
+                class="btn btn-square btn-ghost btn-sm"
+                aria-label="Leftmenu toggle"
+                for="layout-sidebar-toggle-trigger"
+              >
+                <span class="iconify lucide--menu size-5"></span>
+              </label>
+              <button
+                class="btn btn-outline btn-sm btn-ghost border-base-300 text-base-content/70 hidden h-9 w-48 justify-start gap-2 !text-sm md:flex"
+              >
+                <span class="iconify lucide--search size-4"></span>
+                <span>Search</span>
+              </button>
+              <button
+                class="btn btn-outline btn-sm btn-square btn-ghost border-base-300 text-base-content/70 flex size-9 md:hidden"
+                aria-label="Search"
+              >
+                <span class="iconify lucide--search size-4"></span>
+              </button>
+              <dialog id="topbar-search-modal" class="modal p-0">
+                <div class="modal-box p-0">
+                  <div
+                    class="input border-base-300 w-full rounded-none border-0 border-b focus:!outline-0 active:!outline-0"
+                  >
+                    <span
+                      class="iconify lucide--search text-base-content/60 size-4.5"
+                    ></span>
+                    <input
+                      class="grow"
+                      placeholder="Search"
+                      aria-label="Search"
+                      type="search"
+                    />
+                    <form method="dialog">
+                      <button
+                        class="btn btn-sm btn-circle btn-ghost"
+                        aria-label="Close"
+                      >
+                        <span
+                          class="iconify lucide--x text-base-content/80 size-4"
+                        ></span>
+                      </button>
+                    </form>
+                  </div>
+                  <ul class="menu w-full pt-0">
+                    <li class="menu-title">Actions</li>
+                    <li>
+                      <div>
+                        <span
+                          class="iconify lucide--folder-plus size-4.5"
+                        ></span>
+                        <p class="grow text-sm">Create a new folder</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="iconify lucide--file-plus size-4.5"></span>
+                        <p class="grow text-sm">Upload new document</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="iconify lucide--user-plus size-4.5"></span>
+                        <p class="grow text-sm">Invite to project</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <hr class="border-base-300 h-px" />
+                  <ul class="menu w-full pt-0">
+                    <li class="menu-title">Quick Links</li>
+                    <li>
+                      <div>
+                        <span class="iconify lucide--folders size-4.5"></span>
+                        <p class="grow text-sm">File Manager</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="iconify lucide--user size-4.5"></span>
+                        <p class="grow text-sm">Profile</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span
+                          class="iconify lucide--layout-dashboard size-4.5"
+                        ></span>
+                        <p class="grow text-sm">Dashboard</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span
+                          class="iconify lucide--help-circle size-4.5"
+                        ></span>
+                        <p class="grow text-sm">Support</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="iconify lucide--keyboard size-4.5"></span>
+                        <p class="grow text-sm">Keyboard Shortcuts</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
+            </div>
+            <div class="inline-flex items-center gap-1.5">
+              <div class="dropdown dropdown-center">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-sm btn-circle btn-ghost"
+                  aria-label="Theme toggle"
+                >
+                  <span
+                    class="iconify lucide--sun hidden size-4 size-4.5 group-data-[theme=light]/html:inline"
+                  ></span>
+                  <span
+                    class="iconify lucide--moon hidden size-4 size-4.5 group-data-[theme=dark]/html:inline"
+                  ></span>
+                  <span
+                    class="iconify lucide--monitor hidden size-4 size-4.5 group-[:not([data-theme])]/html:inline"
+                  ></span>
+                  <span
+                    class="iconify lucide--palette hidden size-4 size-4.5 group-data-[theme=contrast]/html:inline group-data-[theme=dim]/html:inline group-data-[theme=material]/html:inline group-data-[theme=material-dark]/html:inline"
+                  ></span>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="dropdown-content menu bg-base-100 rounded-box z-1 mt-2 w-36 space-y-0.5 p-1 shadow-sm"
+                >
+                  <li>
+                    <div
+                      class="group-data-[theme=light]/html:bg-base-200 flex gap-2"
+                      data-theme-control="light"
+                    >
+                      <span class="iconify lucide--sun size-4.5"></span>
+                      <span class="font-medium">Light</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="group-data-[theme=dark]/html:bg-base-200 flex gap-2"
+                      data-theme-control="dark"
+                    >
+                      <span class="iconify lucide--moon size-4.5"></span>
+                      <span class="font-medium">Dark</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="group-[:not([data-theme])]/html:bg-base-200 flex gap-2"
+                      data-theme-control="system"
+                    >
+                      <span class="iconify lucide--monitor size-4.5"></span>
+                      <span class="font-medium">System</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <label
+                for="layout-rightbar-drawer"
+                class="btn btn-circle btn-ghost btn-sm drawer-button"
+              >
+                <span class="iconify lucide--settings-2 size-4.5"></span>
+              </label>
+              <div
+                class="dropdown dropdown-bottom sm:dropdown-end max-sm:dropdown-center"
+              >
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-circle btn-ghost btn-sm"
+                  aria-label="Notifications"
+                >
+                  <span class="iconify lucide--bell size-4.5"></span>
+                </div>
+                <div
+                  tabindex="0"
+                  class="dropdown-content bg-base-100 rounded-box card card-compact mt-5 w-60 p-2 shadow sm:w-84"
+                >
+                  <div class="flex items-center justify-between px-2">
+                    <p class="text-base font-medium">Notification</p>
+                    <button
+                      tabindex="0"
+                      class="btn btn-sm btn-circle btn-ghost"
+                      aria-label="Close"
+                    >
+                      <span class="iconify lucide--x size-4"></span>
+                    </button>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <div class="badge badge-sm badge-primary badge-soft">
+                      Today
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <div
+                      class="rounded-box hover:bg-base-200 flex cursor-pointer gap-3 px-2 py-1.5 transition-all"
+                    >
+                      <img
+                        class="bg-base-200 mask mask-squircle size-10 p-0.5"
+                        alt=""
+                        src="./images/avatars/4.png"
+                      />
+                      <div class="grow">
+                        <p class="text-sm leading-tight">
+                          Customer has requested a return for item
+                        </p>
+                        <p
+                          class="text-base-content/60 text-end text-xs leading-tight"
+                        >
+                          1 Hour ago
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-box hover:bg-base-200 flex cursor-pointer gap-3 px-2 py-1.5 transition-all"
+                    >
+                      <img
+                        class="bg-base-200 mask mask-squircle size-10 p-0.5"
+                        alt=""
+                        src="./images/avatars/5.png"
+                      />
+                      <div class="grow">
+                        <p class="text-sm leading-tight">
+                          A new review has been submitted for product
+                        </p>
+                        <p
+                          class="text-base-content/60 text-end text-xs leading-tight"
+                        >
+                          1 Hour ago
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-2 flex items-center justify-center">
+                    <div class="badge badge-sm">Previous</div>
+                  </div>
+                  <div class="mt-2">
+                    <div
+                      class="rounded-box hover:bg-base-200 flex cursor-pointer gap-3 px-2 py-1.5 transition-all"
+                    >
+                      <img
+                        class="bg-base-200 mask mask-squircle size-10 p-0.5"
+                        alt=""
+                        src="./images/avatars/1.png"
+                      />
+                      <div class="grow">
+                        <p class="text-sm leading-tight">
+                          Prepare for the upcoming weekend promotion
+                        </p>
+                        <p
+                          class="text-base-content/60 text-end text-xs leading-tight"
+                        >
+                          2 Days ago
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-box hover:bg-base-200 flex cursor-pointer gap-3 px-2 py-1.5 transition-all"
+                    >
+                      <img
+                        class="bg-base-200 mask mask-squircle size-10 p-0.5"
+                        alt=""
+                        src="./images/avatars/2.png"
+                      />
+                      <div class="grow">
+                        <p class="text-sm leading-tight">
+                          Product 'ABC123' is running low in stock.
+                        </p>
+                        <p
+                          class="text-base-content/60 text-end text-xs leading-tight"
+                        >
+                          3 Days ago
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-box hover:bg-base-200 flex cursor-pointer gap-3 px-2 py-1.5 transition-all"
+                    >
+                      <img
+                        class="bg-base-200 mask mask-squircle size-10 p-0.5"
+                        alt=""
+                        src="./images/avatars/3.png"
+                      />
+                      <div class="grow">
+                        <p class="text-sm leading-tight">
+                          Payment received for Order ID: #67890
+                        </p>
+                        <p
+                          class="text-base-content/60 text-end text-xs leading-tight"
+                        >
+                          Week ago
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="border-base-300 -mx-2 mt-2" />
+                  <div class="flex items-center justify-between pt-2">
+                    <button class="btn btn-sm btn-ghost">Mark as read</button>
+                    <button class="btn btn-sm btn-soft btn-primary">
+                      View All
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown dropdown-bottom dropdown-end">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-ghost rounded-btn px-1.5"
+                >
+                  <div class="flex items-center gap-2">
+                    <div class="avatar">
+                      <div class="bg-base-200 mask mask-squircle w-8">
+                        <img alt="Avatar" src="./images/avatars/1.png" />
+                      </div>
+                    </div>
+                    <div class="-space-y-0.5 text-start">
+                      <p class="text-sm">Brian</p>
+                      <p class="text-base-content/60 text-xs">Profile</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="dropdown-content bg-base-100 rounded-box mt-4 w-44 shadow"
+                  tabindex="0"
+                >
+                  <ul class="menu w-full p-2">
+                    <li>
+                      <a href="_profile-settings.html">
+                        <span class="iconify lucide--user size-4"></span>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="_profile-settings.html">
+                        <span class="iconify lucide--settings size-4"></span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/pages-get-help.html">
+                        <span class="iconify lucide--help-circle size-4"></span>
+                        <span>Help</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <hr class="border-base-300" />
+                  <ul class="menu w-full p-2">
+                    <li>
+                      <div>
+                        <span
+                          class="iconify lucide--arrow-left-right size-4"
+                        ></span>
+                        <span>Switch Account</span>
+                      </div>
+                    </li>
+                    <li>
+                      <a
+                        class="text-error hover:bg-error/10"
+                        href="/auth/login"
+                      >
+                        <span class="iconify lucide--log-out size-4"></span>
+                        <span>Logout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--  End: Layout - Topbar -->
+
+          <!--  Start: Layout - Content -->
+          <!-- Reporting Module -->
+          <div id="layout-content" class="p-6 bg-base-100">
+            <h2 class="text-2xl font-semibold mb-4">Reporting</h2>
+
+            <!-- Tabs -->
+            <div class="min-h-screen p-4 md:p-6">
+              <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                  <div>
+                    <h1 class="text-3xl font-bold text-gray-800">
+                      Supercharged Analytics
+                    </h1>
+                    <p class="text-gray-600">
+                      Comprehensive project insights and visual reports
+                    </p>
+                  </div>
+               
+                </div>
+
+                <div
+                  class="bg-base-100 rounded-2xl shadow-xl p-6 glowing-border"
+                >
+                  <div
+                    class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6"
+                  >
+                    <h2 class="text-2xl font-bold mb-4 lg:mb-0">
+                      Project Analytics Dashboard
+                    </h2>
+                    <div class="flex flex-wrap gap-2">
+                      <button class="btn btn-sm btn-primary">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4 mr-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                          />
+                        </svg>
+                        Export
+                      </button>
+                    
+                      <div class="dropdown dropdown-bottom">
+                        <label tabindex="0" class="btn btn-sm btn-outline">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 mr-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                            />
+                          </svg>
+                          Filter
+                        </label>
+                        <ul
+                          tabindex="0"
+                          class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                        >
+                          <li><a>This Week</a></li>
+                          <li><a>This Month</a></li>
+                          <li><a>This Quarter</a></li>
+                          <li><a>Year to Date</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tabs -->
+                  <div class="tabs tabs-boxed bg-base-200 p-1 mb-6">
+                    <a class="tab tab-active" data-tab="overview"
+                      >Project Overview</a
+                    >
+                    <a class="tab" data-tab="deadlines">Upcoming Deadlines</a>
+                    <a class="tab" data-tab="completed">Completed Milestones</a>
+                    <a class="tab" data-tab="resources">Resource Allocation</a>
+                    <a class="tab" data-tab="risks">Risk Analysis</a>
+                    <a class="tab" data-tab="custom">Custom Reports</a>
+                  </div>
+
+                  <!-- Tab Panels -->
+                  <div>
+                    <!-- Project Overview -->
+                    <div id="report-overview" class="report-panel">
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Project Progress
+                          </h3>
+                          <div id="project-progress-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Project Status Distribution
+                          </h3>
+                          <div id="project-status-chart"></div>
+                        </div>
+                      </div>
+                      <div
+                        class="chart-card bg-base-100 p-4 rounded-xl border mb-6"
+                      >
+                        <h3 class="font-semibold text-lg mb-4">
+                          Project Timeline
+                        </h3>
+                        <div id="project-timeline-chart"></div>
+                      </div>
+                    </div>
+
+                    <!-- Upcoming Deadlines -->
+                    <div id="report-deadlines" class="report-panel hidden">
+                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Deadline Timeline
+                          </h3>
+                          <div id="deadline-timeline-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Deadline Priority
+                          </h3>
+                          <div id="deadline-priority-chart"></div>
+                        </div>
+                      </div>
+                      <div class="bg-base-100 p-4 rounded-xl border">
+                        <h3 class="font-semibold text-lg mb-4">
+                          Upcoming Deadlines
+                        </h3>
+                        <div class="overflow-x-auto">
+                          <table class="table table-zebra w-full">
+                            <thead>
+                              <tr>
+                                <th>Project</th>
+                                <th>Task</th>
+                                <th>Deadline</th>
+                                <th>Days Left</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Website Redesign</td>
+                                <td>Website Launch</td>
+                                <td>Aug 15, 2025</td>
+                                <td>
+                                  <span class="badge badge-warning"
+                                    >16 days</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-error">High</span>
+                                </td>
+                                <td>
+                                  <div
+                                    class="radial-progress text-warning"
+                                    style="--value: 75; --size: 2rem"
+                                  >
+                                    75%
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Mobile App</td>
+                                <td>API Integration</td>
+                                <td>Aug 10, 2025</td>
+                                <td>
+                                  <span class="badge badge-error">11 days</span>
+                                </td>
+                                <td>
+                                  <span class="badge badge-error"
+                                    >Critical</span
+                                  >
+                                </td>
+                                <td>
+                                  <div
+                                    class="radial-progress text-error"
+                                    style="--value: 65; --size: 2rem"
+                                  >
+                                    65%
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>CRM System</td>
+                                <td>Final Testing</td>
+                                <td>Aug 20, 2025</td>
+                                <td>
+                                  <span class="badge badge-warning"
+                                    >21 days</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-warning"
+                                    >Medium</span
+                                  >
+                                </td>
+                                <td>
+                                  <div
+                                    class="radial-progress text-info"
+                                    style="--value: 90; --size: 2rem"
+                                  >
+                                    90%
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Marketing Portal</td>
+                                <td>Content Migration</td>
+                                <td>Aug 25, 2025</td>
+                                <td>
+                                  <span class="badge badge-success"
+                                    >26 days</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-success">Low</span>
+                                </td>
+                                <td>
+                                  <div
+                                    class="radial-progress text-success"
+                                    style="--value: 40; --size: 2rem"
+                                  >
+                                    40%
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Completed Milestones -->
+                    <div id="report-completed" class="report-panel hidden">
+                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Milestone Completion Rate
+                          </h3>
+                          <div id="completion-rate-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Milestones by Project
+                          </h3>
+                          <div id="milestone-project-chart"></div>
+                        </div>
+                      </div>
+                      <div class="bg-base-100 p-4 rounded-xl border">
+                        <h3 class="font-semibold text-lg mb-4">
+                          Completed Milestones
+                        </h3>
+                        <div class="overflow-x-auto">
+                          <table class="table w-full">
+                            <thead>
+                              <tr>
+                                <th>Project</th>
+                                <th>Milestone</th>
+                                <th>Completion Date</th>
+                                <th>Days Ahead/Behind</th>
+                                <th>Complexity</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Website Redesign</td>
+                                <td>Design Mockups</td>
+                                <td>Jul 20, 2025</td>
+                                <td>
+                                  <span class="badge badge-success"
+                                    >+3 days</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-warning"
+                                    >Medium</span
+                                  >
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Mobile App</td>
+                                <td>Requirements Gathering</td>
+                                <td>Jul 01, 2025</td>
+                                <td>
+                                  <span class="badge badge-error">-2 days</span>
+                                </td>
+                                <td>
+                                  <span class="badge badge-success">Low</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>CRM System</td>
+                                <td>Backend Architecture</td>
+                                <td>Jul 15, 2025</td>
+                                <td>
+                                  <span class="badge badge-success"
+                                    >+5 days</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-error">High</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Marketing Portal</td>
+                                <td>User Authentication</td>
+                                <td>Jul 25, 2025</td>
+                                <td>
+                                  <span class="badge badge-success"
+                                    >+1 day</span
+                                  >
+                                </td>
+                                <td>
+                                  <span class="badge badge-warning"
+                                    >Medium</span
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Resource Allocation -->
+                    <div id="report-resources" class="report-panel hidden">
+                      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Resource Utilization
+                          </h3>
+                          <div id="resource-utilization-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Allocation by Role
+                          </h3>
+                          <div id="resource-role-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Workload Distribution
+                          </h3>
+                          <div id="workload-distribution-chart"></div>
+                        </div>
+                      </div>
+                      <div class="bg-base-100 p-4 rounded-xl border">
+                        <h3 class="font-semibold text-lg mb-4">
+                          Resource Allocation Details
+                        </h3>
+                        <div class="overflow-x-auto">
+                          <table class="table w-full">
+                            <thead>
+                              <tr>
+                                <th>Resource</th>
+                                <th>Role</th>
+                                <th>Allocated Hours</th>
+                                <th>Hours Used</th>
+                                <th>Utilization</th>
+                                <th>Projects</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="font-medium">Alice Johnson</td>
+                                <td>Frontend Developer</td>
+                                <td>120</td>
+                                <td>80</td>
+                                <td>
+                                  <div class="flex items-center">
+                                    <div
+                                      class="w-24 bg-gray-200 rounded-full h-2.5 mr-2"
+                                    >
+                                      <div
+                                        class="bg-primary h-2.5 rounded-full"
+                                        style="width: 67%"
+                                      ></div>
+                                    </div>
+                                    <span>67%</span>
+                                  </div>
+                                </td>
+                                <td>2</td>
+                              </tr>
+                              <tr>
+                                <td class="font-medium">Bob Smith</td>
+                                <td>Backend Developer</td>
+                                <td>150</td>
+                                <td>150</td>
+                                <td>
+                                  <div class="flex items-center">
+                                    <div
+                                      class="w-24 bg-gray-200 rounded-full h-2.5 mr-2"
+                                    >
+                                      <div
+                                        class="bg-success h-2.5 rounded-full"
+                                        style="width: 100%"
+                                      ></div>
+                                    </div>
+                                    <span>100%</span>
+                                  </div>
+                                </td>
+                                <td>3</td>
+                              </tr>
+                              <tr>
+                                <td class="font-medium">Charlie Brown</td>
+                                <td>UX Designer</td>
+                                <td>100</td>
+                                <td>45</td>
+                                <td>
+                                  <div class="flex items-center">
+                                    <div
+                                      class="w-24 bg-gray-200 rounded-full h-2.5 mr-2"
+                                    >
+                                      <div
+                                        class="bg-warning h-2.5 rounded-full"
+                                        style="width: 45%"
+                                      ></div>
+                                    </div>
+                                    <span>45%</span>
+                                  </div>
+                                </td>
+                                <td>1</td>
+                              </tr>
+                              <tr>
+                                <td class="font-medium">Diana Miller</td>
+                                <td>Project Manager</td>
+                                <td>180</td>
+                                <td>120</td>
+                                <td>
+                                  <div class="flex items-center">
+                                    <div
+                                      class="w-24 bg-gray-200 rounded-full h-2.5 mr-2"
+                                    >
+                                      <div
+                                        class="bg-primary h-2.5 rounded-full"
+                                        style="width: 67%"
+                                      ></div>
+                                    </div>
+                                    <span>67%</span>
+                                  </div>
+                                </td>
+                                <td>4</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Risk Analysis (New) -->
+                    <div id="report-risks" class="report-panel hidden">
+                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Project Risk Assessment
+                          </h3>
+                          <div id="risk-assessment-chart"></div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Risk Severity Distribution
+                          </h3>
+                          <div id="risk-severity-chart"></div>
+                        </div>
+                      </div>
+                      <div class="bg-base-100 p-4 rounded-xl border">
+                        <h3 class="font-semibold text-lg mb-4">
+                          Risk Register
+                        </h3>
+                        <div class="overflow-x-auto">
+                          <table class="table w-full">
+                            <thead>
+                              <tr>
+                                <th>Risk</th>
+                                <th>Project</th>
+                                <th>Probability</th>
+                                <th>Impact</th>
+                                <th>Severity</th>
+                                <th>Owner</th>
+                                <th>Mitigation Plan</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Scope Creep</td>
+                                <td>Website Redesign</td>
+                                <td>High</td>
+                                <td>High</td>
+                                <td>
+                                  <span class="badge badge-error"
+                                    >Critical</span
+                                  >
+                                </td>
+                                <td>Alice</td>
+                                <td>Strict change control process</td>
+                              </tr>
+                              <tr>
+                                <td>Resource Shortage</td>
+                                <td>Mobile App</td>
+                                <td>Medium</td>
+                                <td>High</td>
+                                <td>
+                                  <span class="badge badge-warning">High</span>
+                                </td>
+                                <td>Bob</td>
+                                <td>Cross-train team members</td>
+                              </tr>
+                              <tr>
+                                <td>Technical Debt</td>
+                                <td>CRM System</td>
+                                <td>Low</td>
+                                <td>Medium</td>
+                                <td>
+                                  <span class="badge badge-info">Medium</span>
+                                </td>
+                                <td>Charlie</td>
+                                <td>Allocate time for refactoring</td>
+                              </tr>
+                              <tr>
+                                <td>Integration Issues</td>
+                                <td>Marketing Portal</td>
+                                <td>Medium</td>
+                                <td>Medium</td>
+                                <td>
+                                  <span class="badge badge-info">Medium</span>
+                                </td>
+                                <td>Diana</td>
+                                <td>Early API testing</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Custom Reports -->
+                    <div id="report-custom" class="report-panel hidden">
+                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border"
+                        >
+                          <h3 class="font-semibold text-lg mb-4">
+                            Custom Report Builder
+                          </h3>
+                          <div class="space-y-4">
+                            <div>
+                              <label class="label">
+                                <span class="label-text">Report Type</span>
+                              </label>
+                              <select class="select select-bordered w-full">
+                                <option disabled selected>
+                                  Select report type
+                                </option>
+                                <option>Project Performance</option>
+                                <option>Resource Utilization</option>
+                                <option>Budget vs Actual</option>
+                                <option>Risk Analysis</option>
+                                <option>Milestone Tracking</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label class="label">
+                                <span class="label-text">Time Period</span>
+                              </label>
+                              <select class="select select-bordered w-full">
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                                <option>Last Quarter</option>
+                                <option>Last Year</option>
+                                <option>Year to Date</option>
+                                <option>Custom Range</option>
+                              </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                              <div>
+                                <label class="label">
+                                  <span class="label-text">Projects</span>
+                                </label>
+                                <select
+                                  class="select select-bordered w-full"
+                                  multiple
+                                >
+                                  <option>Website Redesign</option>
+                                  <option>Mobile App</option>
+                                  <option>CRM System</option>
+                                  <option>Marketing Portal</option>
+                                  <option>Data Migration</option>
+                                </select>
+                              </div>
+                              <div>
+                                <label class="label">
+                                  <span class="label-text">Teams</span>
+                                </label>
+                                <select
+                                  class="select select-bordered w-full"
+                                  multiple
+                                >
+                                  <option>Development</option>
+                                  <option>Design</option>
+                                  <option>QA</option>
+                                  <option>Marketing</option>
+                                  <option>Management</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div>
+                              <label class="label">
+                                <span class="label-text">Visualization</span>
+                              </label>
+                              <div class="flex flex-wrap gap-2">
+                                <button class="btn btn-sm btn-outline">
+                                  Bar Chart
+                                </button>
+                                <button class="btn btn-sm btn-outline">
+                                  Line Chart
+                                </button>
+                                <button class="btn btn-sm btn-outline">
+                                  Pie Chart
+                                </button>
+                                <button class="btn btn-sm btn-outline">
+                                  Radial Chart
+                                </button>
+                                <button class="btn btn-sm btn-outline">
+                                  Heatmap
+                                </button>
+                              </div>
+                            </div>
+                            <div class="flex justify-end mt-6">
+                              <button class="btn btn-primary">
+                                Generate Report
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="chart-card bg-base-100 p-4 rounded-xl border flex items-center justify-center"
+                        >
+                          <div class="text-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-16 w-16 mx-auto text-primary mb-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                              />
+                            </svg>
+                            <h3 class="text-xl font-semibold mb-2">
+                              Create Custom Reports
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                              Select parameters to generate a customized report
+                              with visualizations tailored to your needs.
+                            </p>
+                            <div class="flex justify-center space-x-4">
+                              <div class="stats shadow">
+                                <div class="stat">
+                                  <div class="stat-title">Saved Reports</div>
+                                  <div class="stat-value">12</div>
+                                </div>
+                              </div>
+                              <div class="stats shadow">
+                                <div class="stat">
+                                  <div class="stat-title">Favorites</div>
+                                  <div class="stat-value">5</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8 text-center text-gray-600">
+                  <p>
+                    Supercharged Reporting Dashboard • Updated today at 11:42 AM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Switching Script -->
+          <script>
+            document.querySelectorAll('.tabs .tab').forEach(tab => {
+              tab.addEventListener('click', () => {
+                // Activate selected tab
+                document
+                  .querySelectorAll('.tabs .tab')
+                  .forEach(t => t.classList.remove('tab-active'))
+                tab.classList.add('tab-active')
+
+                // Show corresponding panel
+                const target = tab.getAttribute('data-tab')
+                document
+                  .querySelectorAll('.report-panel')
+                  .forEach(panel => panel.classList.add('hidden'))
+                document
+                  .getElementById('report-' + target)
+                  .classList.remove('hidden')
+              })
+            })
+          </script>
+
+          <!--  End: Layout - Content -->
+          <div class="-mt-2 flex items-center justify-between px-6 pb-4">
+            <p>
+              Powered By
+              <span class="text-primary ms-1"> XProcura </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--  Start: Layout - Rightbar -->
+
+      <div class="drawer drawer-end">
+        <input
+          id="layout-rightbar-drawer"
+          class="drawer-toggle"
+          type="checkbox"
+        />
+        <div class="drawer-side z-[50]">
+          <label
+            for="layout-rightbar-drawer"
+            aria-label="close sidebar"
+            class="drawer-overlay"
+            aria-hidden="true"
+          ></label>
+          <div class="bg-base-100 text-base-content h-full w-72 sm:w-96">
+            <div class="bg-base-200 flex justify-between px-5 py-4">
+              <p class="text-lg font-medium">Setting</p>
+              <div class="inline-flex gap-1">
+                <button
+                  class="btn-ghost btn btn-sm btn-circle relative"
+                  aria-label="Reset"
+                  data-reset-control
+                >
+                  <span class="iconify lucide--rotate-cw size-5"></span>
+                  <span
+                    class="bg-error absolute end-0.5 top-0.5 rounded-full p-0 opacity-0 transition-all group-data-[changed]/html:p-[2px] group-data-[changed]/html:opacity-100"
+                  ></span>
+                </button>
+                <button
+                  class="btn btn-ghost btn-sm btn-circle"
+                  aria-label="Full Screen"
+                  data-fullscreen-control
+                >
+                  <span
+                    class="iconify lucide--minimize hidden size-5 group-data-[fullscreen]/html:inline"
+                  ></span>
+                  <span
+                    class="iconify lucide--fullscreen inline size-5 group-data-[fullscreen]/html:hidden"
+                  ></span>
+                </button>
+                <label
+                  for="layout-rightbar-drawer"
+                  aria-label="close sidebar"
+                  aria-hidden="true"
+                  class="btn btn-ghost btn-sm btn-circle"
+                >
+                  <span class="iconify lucide--x size-5"></span>
+                </label>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="font-medium">Theme</p>
+              <div class="mt-3 grid grid-cols-3 gap-3">
+                <div
+                  data-theme="light"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="light"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">Light</p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=light]/html:p-1 group-data-[theme=light]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  data-theme="contrast"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="contrast"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">
+                      Contrast
+                    </p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=contrast]/html:p-1 group-data-[theme=contrast]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  data-theme="material"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="material"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">
+                      Material
+                    </p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=material]/html:p-1 group-data-[theme=material]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  data-theme="dark"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="dark"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">Dark</p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=dark]/html:p-1 group-data-[theme=dark]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  data-theme="dim"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="dim"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">Dim</p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=dim]/html:p-1 group-data-[theme=dim]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  data-theme="material-dark"
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="material-dark"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-xs capitalize sm:text-sm">
+                      Material Dark
+                    </p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-data-[theme=material-dark]/html:p-1 group-data-[theme=material-dark]/html:opacity-100"
+                  ></span>
+                </div>
+                <div
+                  class="rounded-box group relative cursor-pointer"
+                  data-theme-control="system"
+                >
+                  <div class="bg-base-200 rounded-box pt-5 pb-3 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <span
+                        class="rounded-box bg-primary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span
+                        class="rounded-box bg-secondary h-6 w-2 sm:w-3"
+                      ></span>
+                      <span class="rounded-box bg-accent h-6 w-2 sm:w-3"></span>
+                      <span
+                        class="rounded-box bg-success h-6 w-2 sm:w-3"
+                      ></span>
+                    </div>
+                    <p class="mt-1.5 text-sm capitalize sm:text-base">System</p>
+                  </div>
+                  <span
+                    class="bg-primary text-primary-content absolute end-2 top-2 rounded-full p-0 opacity-0 transition-all group-[:not([data-theme])]/html:p-1 group-[:not([data-theme])]/html:opacity-100"
+                  ></span>
+                </div>
+              </div>
+              <div
+                class="pointer-events-none opacity-50 group-data-[theme=contrast]/html:pointer-events-auto group-data-[theme=contrast]/html:opacity-100 group-data-[theme=light]/html:pointer-events-auto group-data-[theme=light]/html:opacity-100"
+              >
+                <p class="mt-6 font-medium">
+                  Sidebar
+                  <span
+                    class="ms-1 inline text-xs group-data-[theme=contrast]/html:hidden group-data-[theme=light]/html:hidden md:text-sm"
+                  >
+                    (*Only available in light, contrast themes)
+                  </span>
+                </p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                  <div
+                    data-sidebar-theme-control="light"
+                    class="border-base-300 hover:bg-base-200 rounded-box group-data-[sidebar-theme=light]/html:bg-base-200 inline-flex cursor-pointer items-center justify-center gap-2 border p-2"
+                  >
+                    <span class="iconify lucide--sun size-4.5"></span>
+                    Light
+                  </div>
+                  <div
+                    data-sidebar-theme-control="dark"
+                    class="border-base-300 hover:bg-base-200 rounded-box group-data-[sidebar-theme=dark]/html:bg-base-200 inline-flex cursor-pointer items-center justify-center gap-2 border p-2"
+                  >
+                    <span class="iconify lucide--moon size-4.5"></span>
+                    Dark
+                  </div>
+                </div>
+              </div>
+              <p class="mt-6 font-medium">Direction</p>
+              <div class="mt-3 grid grid-cols-2 gap-3">
+                <div
+                  data-dir-control="ltr"
+                  class="border-base-300 hover:bg-base-200 rounded-box group-[[dir=ltr]]/html:bg-base-200 group-[:not([dir])]/html:bg-base-200 inline-flex cursor-pointer items-center justify-center gap-2 border p-2"
+                >
+                  <span class="iconify lucide--pilcrow-left size-4.5"></span>
+                  <span class="hidden sm:inline">Left to Right</span>
+                  <span class="inline sm:hidden">LTR</span>
+                </div>
+                <div
+                  data-dir-control="rtl"
+                  class="border-base-300 hover:bg-base-200 rounded-box group-[[dir=rtl]]/html:bg-base-200 inline-flex cursor-pointer items-center justify-center gap-2 border p-2"
+                >
+                  <span class="iconify lucide--pilcrow-right size-4.5"></span>
+                  <span class="hidden sm:inline">Right to Right</span>
+                  <span class="inline sm:hidden">RTL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  Start: Layout - Rightbar -->
+    </div>
+
+    <!--  End: Layout - Main -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.3.0/apexcharts.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/4.3.0/apexcharts.min.js"></script>
+    <script src="./js/pages/dashboards/ecommerce.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/6.2.7/simplebar.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/6.2.7/simplebar.css"
+    />
+    <script src="./js/app.js"></script>
+
+    <script>
+      // Tab switching functionality
+      document.querySelectorAll('.tabs a').forEach(tab => {
+        tab.addEventListener('click', function () {
+          // Update active tab
+          document
+            .querySelectorAll('.tabs a')
+            .forEach(t => t.classList.remove('tab-active'))
+          this.classList.add('tab-active')
+
+          // Hide all panels
+          document.querySelectorAll('.report-panel').forEach(panel => {
+            panel.classList.add('hidden')
+          })
+
+          // Show active panel
+          const tabName = this.getAttribute('data-tab')
+          document
+            .getElementById(`report-${tabName}`)
+            .classList.remove('hidden')
+        })
+      })
+
+      // Initialize charts when DOM is loaded
+      document.addEventListener('DOMContentLoaded', function () {
+        // Project Progress Chart
+        const progressOptions = {
+          series: [
+            {
+              name: 'Progress',
+              data: [75, 50, 90, 40, 65]
+            }
+          ],
+          chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: { show: true }
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: '55%',
+              endingShape: 'rounded'
+            }
+          },
+          dataLabels: {
+            enabled: false
+          },
+          colors: ['#4f46e5', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6'],
+          stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+          },
+          xaxis: {
+            categories: [
+              'Website Redesign',
+              'Mobile App',
+              'CRM System',
+              'Marketing Portal',
+              'Data Migration'
+            ]
+          },
+          yaxis: {
+            title: {
+              text: '% Complete'
+            }
+          },
+          fill: {
+            opacity: 1
+          },
+          tooltip: {
+            y: {
+              formatter: function (val) {
+                return val + '%'
+              }
+            }
+          }
+        }
+        const progressChart = new ApexCharts(
+          document.querySelector('#project-progress-chart'),
+          progressOptions
+        )
+        progressChart.render()
+
+        // Project Status Chart
+        const statusOptions = {
+          series: [44, 55, 13, 43],
+          chart: {
+            type: 'donut',
+            height: 350
+          },
+          labels: ['On Track', 'Delayed', 'At Risk', 'Completed'],
+          colors: ['#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+          responsive: [
+            {
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200
+                },
+                legend: {
+                  position: 'bottom'
+                }
+              }
+            }
+          ]
+        }
+        const statusChart = new ApexCharts(
+          document.querySelector('#project-status-chart'),
+          statusOptions
+        )
+        statusChart.render()
+
+        // Project Timeline Chart
+        const timelineOptions = {
+          series: [
+            {
+              name: 'Website Redesign',
+              data: [
+                {
+                  x: 'Design',
+                  y: [
+                    new Date('2025-06-01').getTime(),
+                    new Date('2025-07-15').getTime()
+                  ]
+                },
+                {
+                  x: 'Development',
+                  y: [
+                    new Date('2025-07-16').getTime(),
+                    new Date('2025-08-15').getTime()
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Mobile App',
+              data: [
+                {
+                  x: 'Planning',
+                  y: [
+                    new Date('2025-05-15').getTime(),
+                    new Date('2025-06-15').getTime()
+                  ]
+                },
+                {
+                  x: 'Development',
+                  y: [
+                    new Date('2025-06-16').getTime(),
+                    new Date('2025-08-20').getTime()
+                  ]
+                },
+                {
+                  x: 'Testing',
+                  y: [
+                    new Date('2025-08-21').getTime(),
+                    new Date('2025-09-10').getTime()
+                  ]
+                }
+              ]
+            }
+          ],
+          chart: {
+            height: 350,
+            type: 'rangeBar',
+            toolbar: { show: true }
+          },
+          plotOptions: {
+            bar: {
+              horizontal: true,
+              barHeight: '50%',
+              rangeBarGroupRows: true
+            }
+          },
+          colors: ['#4f46e5', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6'],
+          fill: {
+            type: 'solid',
+            opacity: 0.8
+          },
+          xaxis: {
+            type: 'datetime',
+            min: new Date('2025-05-01').getTime(),
+            max: new Date('2025-10-01').getTime()
+          },
+          legend: {
+            position: 'top'
+          },
+          tooltip: {
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+              const start = new Date(
+                w.globals.series[seriesIndex][dataPointIndex][0]
+              )
+              const end = new Date(
+                w.globals.series[seriesIndex][dataPointIndex][1]
+              )
+              return (
+                '<div class="p-2 bg-base-100 border border-gray-200 rounded-lg">' +
+                '<div class="font-bold">' +
+                w.globals.labels[dataPointIndex] +
+                '</div>' +
+                '<div>' +
+                start.toDateString() +
+                ' to ' +
+                end.toDateString() +
+                '</div>' +
+                '</div>'
+              )
+            }
+          }
+        }
+        const timelineChart = new ApexCharts(
+          document.querySelector('#project-timeline-chart'),
+          timelineOptions
+        )
+        timelineChart.render()
+
+        // Resource Utilization Chart
+        const resourceOptions = {
+          series: [
+            {
+              name: 'Allocated',
+              data: [120, 150, 100, 180, 90, 75]
+            },
+            {
+              name: 'Used',
+              data: [80, 150, 45, 120, 60, 40]
+            }
+          ],
+          chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+            toolbar: { show: true }
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: '55%',
+              endingShape: 'rounded'
+            }
+          },
+          dataLabels: {
+            enabled: false
+          },
+          colors: ['#4f46e5', '#10b981'],
+          stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+          },
+          xaxis: {
+            categories: ['Alice', 'Bob', 'Charlie', 'Diana', 'Eva', 'Frank']
+          },
+          yaxis: {
+            title: {
+              text: 'Hours'
+            }
+          },
+          fill: {
+            opacity: 1
+          },
+          tooltip: {
+            y: {
+              formatter: function (val) {
+                return val + ' hours'
+              }
+            }
+          }
+        }
+        const resourceChart = new ApexCharts(
+          document.querySelector('#resource-utilization-chart'),
+          resourceOptions
+        )
+        resourceChart.render()
+
+        // More charts would be initialized here in a real implementation
+        // For the demo, we'll simulate the presence of other charts
+        document
+          .querySelectorAll(
+            '#deadline-timeline-chart, #deadline-priority-chart, #completion-rate-chart, #milestone-project-chart, #resource-role-chart, #workload-distribution-chart, #risk-assessment-chart, #risk-severity-chart'
+          )
+          .forEach(el => {
+            el.innerHTML =
+              '<div class="flex items-center justify-center h-64 text-gray-500">Chart visualization would appear here</div>'
+          })
+      })
+    </script>
+  </body>
+</html>

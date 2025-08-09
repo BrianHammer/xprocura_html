@@ -1,0 +1,283 @@
+<input
+  type="checkbox"
+  id="layout-sidebar-toggle-trigger"
+  class="hidden"
+  aria-label="Toggle layout sidebar"
+/>
+
+<div id="layout-sidebar" class="h-full">
+  <a
+    class="flex min-h-16 items-center justify-center"
+    href="./dashboards-ecommerce.html"
+  >
+    <img
+      alt="logo-dark"
+      class="hidden h-5 dark:inline"
+      src="./images/logo/logo-xp.png"
+    />
+    <img
+      alt="logo-light"
+      class="h-5 dark:hidden"
+      src="./images/logo/logo-xp.png"
+    />
+  </a>
+  <div class="relative min-h-0 grow">
+    <div data-simplebar class="size-full">
+      <div id="sidebar-menu">
+        <div class="group collapse">
+          <div class="collapse-title">
+            <a href="./dashboards-ecommerce.html">
+              <span class="iconify lucide--home size-4"></span>
+              <span class="grow">Dashboard</span>
+            </a>
+          </div>
+        </div>
+        <!-- Projects -->
+        <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+
+          <div class="collapse-title">
+            <span class="iconify lucide--monitor-dot size-4"></span>
+            <span class="grow">Projects</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_my-projects.html"
+              >My Projects</a
+            >
+            <a class="sidebar-menu-item" href="_add-project.html"
+              >Add Project</a
+            >
+            <a class="sidebar-menu-item" href="_my-projects.html">Active</a>
+            <a class="sidebar-menu-item" href="_my-projects.html">Archived</a>
+          </div>
+        </div>
+
+        <!-- Clients -->
+        <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+          <div class="collapse-title">
+            <span class="iconify lucide--users size-4"></span>
+            <span class="grow">Clients</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_all-clients.html">All</a>
+            <a class="sidebar-menu-item" href="_add-client.html">Add</a>
+          </div>
+        </div>
+
+        <!-- Documents -->
+        <!-- <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+          <div class="collapse-title">
+            <span class="iconify lucide--file-text size-4"></span>
+            <span class="grow">Documents</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="#">All</a>
+            <a class="sidebar-menu-item" href="#">Add</a>
+          </div>
+        </div> -->
+
+        <!-- Reports -->
+        <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+          <div class="collapse-title">
+            <span class="iconify lucide--bar-chart-big size-4"></span>
+            <span class="grow">Reports</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_report.html">View Reports</a>
+            <!-- other report options here -->
+          </div>
+        </div>
+
+        <!-- Divisions -->
+        <!-- <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+          <div class="collapse-title">
+            <span class="iconify lucide--scan size-4"></span>
+            <span class="grow">Divisions</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_all-divisions.html"
+              >Project Divisions Custom</a
+            >
+            <a class="sidebar-menu-item" href="_add-division.html"
+              >Add Division</a
+            >
+            <a class="sidebar-menu-item" href="_add-people-to-divison.html"
+              >Add People to Division</a
+            >
+          </div>
+        </div> -->
+
+        <!-- Users -->
+        <!-- <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+          <div class="collapse-title">
+            <span class="iconify lucide--user size-4"></span>
+            <span class="grow">Users</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_all-users.html">All Users</a>
+            <a class="sidebar-menu-item" href="_add-user.html">Add New</a>
+          </div>
+        </div> -->
+
+        <!-- Manage Roles -->
+        <div class="group collapse">
+          <input
+            aria-label="Sidemenu item trigger"
+            class="peer"
+            type="checkbox"
+            name="sidebar-menu-parent-item"
+          />
+
+          <div class="collapse-title">
+            <span class="iconify lucide--shield-check size-4"></span>
+            <span class="grow">Manage Roles</span>
+            <span
+              class="iconify lucide--chevron-right arrow-icon size-3.5"
+            ></span>
+          </div>
+          <div class="collapse-content">
+            <a class="sidebar-menu-item" href="_all-roles.html">All Roles</a>
+            <a class="sidebar-menu-item" href="_add-role.html">Add New</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="from-base-100/60 pointer-events-none absolute start-0 end-0 bottom-0 h-7 bg-linear-to-t to-transparent"
+    ></div>
+  </div>
+  <div class="mb-2">
+    <hr class="border-base-300" />
+    <ul class="menu w-full">
+      <li>
+        <a href="/frontend/index.html" class="flex items-center gap-2">
+          <span class="iconify lucide--globe size-4"></span>
+        Website
+        </a>
+      </li>
+      <li>
+        <a href="_profile-settings.html" class="flex items-center gap-2">
+          <span class="iconify lucide--settings-2 size-4"></span>
+          Settings
+        </a>
+      </li>
+      <li>
+        <a href="pages-get-help.html" class="flex items-center gap-2">
+          <span class="iconify lucide--circle-help size-4"></span>
+          Get Help
+        </a>
+      </li>
+    </ul>
+    <div class="dropdown dropdown-top dropdown-end w-full">
+      <div
+        tabindex="0"
+        role="button"
+        class="bg-base-200 hover:bg-base-300 rounded-box mx-2 mt-0 flex cursor-pointer items-center gap-2.5 px-3 py-2 transition-all"
+      >
+        <div class="avatar">
+          <div class="bg-base-200 mask mask-squircle bg-base-200 w-8">
+            <img alt="Avatar" src="./images/avatars/1.png" />
+          </div>
+        </div>
+        <div class="grow -space-y-0.5">
+          <p class="text-sm font-medium">Brian</p>
+          <p class="text-base-content/60 text-xs">@withden</p>
+        </div>
+        <span
+          class="iconify lucide--chevrons-up-down text-base-content/60 size-4"
+        ></span>
+      </div>
+      <ul
+        role="menu"
+        class="dropdown-content menu bg-base-100 rounded-box shadow-base-content/4 mb-1 w-48 p-1 shadow-[0px_-10px_40px_0px]"
+        tabindex="0"
+      >
+        <li>
+          <a href="./_profile-settings.html">
+            <span class="iconify lucide--user size-4"></span>
+            <span>My Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="./_profile-settings.html">
+            <span class="iconify lucide--settings size-4"></span>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="./pages-get-help.html">
+            <span class="iconify lucide--help-circle size-4"></span>
+            <span>Help</span>
+          </a>
+        </li>
+        <li>
+          <div>
+            <span class="iconify lucide--bell size-4"></span>
+            <span>Notification</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="iconify lucide--arrow-left-right size-4"></span>
+            <span>Switch Account</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<label for="layout-sidebar-toggle-trigger" id="layout-sidebar-backdrop"></label>
